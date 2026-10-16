@@ -15,10 +15,10 @@ test("Verify the playwright logo is visible", async ({ page }) => {
 // Use this locator to find non-interactive elements like div, span, p, etc. 
 // For interactive elements like button, a, input, etc. use role locators.
 
-test("Verify the text apple in the page", async ({ page }) => {
+test("Verify the text Welocome jhob in the page", async ({ page }) => {
     await page.goto("https://sdetqa.vercel.app/pw-locators-demo-app.html");
-    const apple: Locator = page.getByText("Welcome, John! 👋");
-    await expect(apple).toBeVisible();
+    const jhon: Locator = page.getByText("Welcome, John! 👋");
+    await expect(jhon).toBeVisible();
 })
 
 
