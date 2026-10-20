@@ -6,47 +6,47 @@
 
  */
 
-import{test,expect,Locator} from "@playwright/test";
+import { test, expect, Locator } from "@playwright/test";
 
-test("Test input boxes and data to it",async({page})=>{
+test("Test input boxes and data to it", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const name:Locator= page.locator('#name');
+    const name: Locator = page.locator('#name');
     await expect(name).toBeVisible();
     await expect(name).toBeEnabled();
     await name.fill("abc");
-    const text:string=await name.inputValue()
+    const text: string = await name.inputValue()
     console.log(text);
     expect(text).toBe('abc')
 
-    const maxlength:string|null = await name.getAttribute('maxlength');
+    const maxlength: string | null = await name.getAttribute('maxlength');
     expect(maxlength).toBe('15');
 
 })
 
-   /**
- * Test: Verify radio buttons
- * Validates:
- * - Default unchecked state
- * - Ability to select radio button
- * - State after selection
- */
+/**
+* Test: Verify radio buttons
+* Validates:
+* - Default unchecked state
+* - Ability to select radio button
+* - State after selection
+*/
 
 test('Verify radio buttons', async ({ page }) => {
- await page.goto("https://testautomationpractice.blogspot.com/");
- const male:Locator=page.locator('#male');
- await male.isDisabled();
- await male.isEnabled();
- //const bollean=await expect(male).toBeChecked();
-const bolleanstatus:boolean=await male.isChecked();
- expect(bolleanstatus).toBe(false);
- await expect(male).not.toBeChecked();
- await male.check();
+    await page.goto("https://testautomationpractice.blogspot.com/");
+    const male: Locator = page.locator('#male');
+    await male.isDisabled();
+    await male.isEnabled();
+    //const bollean=await expect(male).toBeChecked();
+    const bolleanstatus: boolean = await male.isChecked();
+    expect(bolleanstatus).toBe(false);
+    await expect(male).not.toBeChecked();
+    await male.check();
 
- const bolleanvalue=await male.isChecked();
- expect(bolleanvalue).toBe(true)
- await expect(male).toBeChecked();
+    const bolleanvalue = await male.isChecked();
+    expect(bolleanvalue).toBe(true)
+    await expect(male).toBeChecked();
 
- await page.waitForTimeout(4000);
+    await page.waitForTimeout(4000);
 
 })
 
@@ -61,22 +61,22 @@ const bolleanstatus:boolean=await male.isChecked();
  * - Label-based selection
  */
 
-test("verify that the ckeckbox is checked",async({page})=>{
-     await page.goto("https://testautomationpractice.blogspot.com/");
-     const sunday:Locator=page.locator('#sunday');
-     await sunday.isEnabled();
-     await sunday.isDisabled();
+test("verify that the ckeckbox is checked", async ({ page }) => {
+    await page.goto("https://testautomationpractice.blogspot.com/");
+    const sunday: Locator = page.locator('#sunday');
+    await sunday.isEnabled();
+    await sunday.isDisabled();
 
-     const bolleanvalue=await sunday.isChecked();
-     expect(bolleanvalue).toBe(false);
+    const bolleanvalue = await sunday.isChecked();
+    expect(bolleanvalue).toBe(false);
 
-     await sunday.click();
-     await expect(sunday).toBeChecked();
+    await sunday.click();
+    await expect(sunday).toBeChecked();
 
-     //ii. Create list of checkbox locators using map()
+    //ii. Create list of checkbox locators using map()
 
-   // const allday:Locator=page.locator('.form-check-input[type="checkbox"]');
-    
+    // const allday:Locator=page.locator('.form-check-input[type="checkbox"]');
+
     //  for(let i=0;i<await allday.count();i++){
     //     await allday.nth(i).check();
     //  }
@@ -84,9 +84,9 @@ test("verify that the ckeckbox is checked",async({page})=>{
     //   for(let i=0;i<await allday.count();i++){
     //     await expect(allday.nth(i)).toBeChecked()
     //  }
-    const alldays:string[]=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday', 'Saturday']
-    const days:Locator[]=alldays.map(index =>page.getByLabel(index));
-    expect (days.length).toBe(7);
+    const alldays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    const days: Locator[] = alldays.map(index => page.getByLabel(index));
+    expect(days.length).toBe(7);
 
     for (const element of days) {
         await element.check();
@@ -95,45 +95,45 @@ test("verify that the ckeckbox is checked",async({page})=>{
 
     // iv. Uncheck last 3 checkboxes using slice()
 
-     const splicedays:Locator[]=days.slice(-3);
-     for (const element of splicedays) {
+    const splicedays: Locator[] = days.slice(-3);
+    for (const element of splicedays) {
         await element.uncheck();
         await expect(element).not.toBeChecked()
-     }
+    }
 
-      // v. Toggle checkboxes, If checked → uncheck, If unchecked → check
-     for (const element of days) {
-        if(await element.isChecked()){
-          await element.uncheck();
-          await expect(element).not.toBeChecked();
+    // v. Toggle checkboxes, If checked → uncheck, If unchecked → check
+    for (const element of days) {
+        if (await element.isChecked()) {
+            await element.uncheck();
+            await expect(element).not.toBeChecked();
         }
-        else{
-                      await element.check();
-                      await expect(element).toBeChecked();
+        else {
+            await element.check();
+            await expect(element).toBeChecked();
 
         }
-     }
-     await page.waitForTimeout(5000);
+    }
+    await page.waitForTimeout(5000);
 
-      // vi. Select checkboxes by index and assert
+    // vi. Select checkboxes by index and assert
 
-      const index:number[]=[1,3,5]
+    const index: number[] = [1, 3, 5]
 
-      for (const key in index) {
-           await days[key].check();
-           await expect(days[key]).toBeChecked();
-      }
+    for (const key in index) {
+        await days[key].check();
+        await expect(days[key]).toBeChecked();
+    }
 
-   // vii. Select checkbox based on label dynamically
+    // vii. Select checkbox based on label dynamically
 
-   const label:string='Friday';
-   for (const labels in days) {
-    
-     if(label.toLowerCase()===label.toLowerCase()){
-        const checkbox = page.getByLabel(label);
+    const label: string = 'Friday';
+    for (const labels in days) {
+
+        if (label.toLowerCase() === label.toLowerCase()) {
+            const checkbox = page.getByLabel(label);
             await checkbox.check();
             await expect(checkbox).toBeChecked();
-     }
-   }
-   
+        }
+    }
+
 })
