@@ -20,16 +20,16 @@ test("Verify single select dropdown", async ({ page }) => {
     // Select option from dropdown using different approaches
 
     // 1 Select by visible text
-     await countryDropdown.selectOption('India');
+    await countryDropdown.selectOption('India');
 
-    // 2 Select by value attribute
-     await countryDropdown.selectOption({ value: 'india' });
+    // // 2 Select by value attribute
+    //  await countryDropdown.selectOption({ value: 'india' });
 
-    // 3 Select by label
-     await countryDropdown.selectOption({ label: 'India' });
+    // // 3 Select by label
+    //  await countryDropdown.selectOption({ label: 'India' });
 
-    // 4 Select by index
-    await countryDropdown.selectOption({ index: 3 });
+    // // 4 Select by index
+    // await countryDropdown.selectOption({ index: 3 });
 
     //count 
     const dropdownOptions: Locator = page.locator('#country>option');
@@ -62,19 +62,19 @@ test("Multi select dropdown'", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
     console.log("Current URL:", page.url());
     const multicolour: Locator = page.locator('#colors');
-    await multicolour.selectOption(['Red','Green'])
-     await multicolour.selectOption(['Red','Green','White'])
-    await multicolour.selectOption([{label:'Red'},{label:'Green'},{label:'White'}])
-    multicolour.selectOption([{ index: 0 }, { index: 2 }, { index: 5 }])
+    await multicolour.selectOption(['Red', 'Green'])
+    //  await multicolour.selectOption(['Red','Green','White'])
+    // await multicolour.selectOption([{label:'Red'},{label:'Green'},{label:'White'}])
+    // multicolour.selectOption([{ index: 0 }, { index: 2 }, { index: 5 }])
 
     await page.waitForTimeout(5000)
 
     // Validate number of dropdown options
-    const allcolourOptions: Locator = page.locator('#colors option');
+    const allcolourOptions: Locator = page.locator('#colors>option');
     expect(allcolourOptions).toHaveCount(7);
 
     console.log("Dropdown count:", await page.locator("#colors").count());
-console.log("Options count:", await page.locator("#colors option").count());
+    console.log("Options count:", await page.locator("#colors>option").count());
 
     // Validate specific option exists
     const options: string[] = (await allcolourOptions.allTextContents()).map(text => text.trim());
@@ -93,7 +93,7 @@ console.log("Options count:", await page.locator("#colors option").count());
  */
 test('Verify sorted list dropdown', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
-    const sortedlistpage: Locator = page.locator('#animals option'); //sorted
+    const sortedlistpage: Locator = page.locator('#animals>option'); //sorted
     // const sortedlistpage:Locator=page.locator('#colors option'); //not sorted
 
     const slist = (await sortedlistpage.allTextContents()).map(text => text.trim())
@@ -118,7 +118,7 @@ test('Verify sorted list dropdown', async ({ page }) => {
 
 test('Verify duplicate array elements', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
-    const sortedlistpage: Locator = page.locator('#animals option'); //sorted
+    const sortedlistpage: Locator = page.locator('#animals>option'); //sorted
     //const sortedlistpage:Locator=page.locator('#colors option'); //not sorted
 
     const trimlist: string[] = (await sortedlistpage.allTextContents()).map(Text => Text.trim())
@@ -135,6 +135,6 @@ test('Verify duplicate array elements', async ({ page }) => {
         }
 
     }
-    console.log("Duplicate Values:",dupliactes);
-    console.log("Unique Values:",set);
+    console.log("Duplicate Values:", dupliactes);
+    console.log("Unique Values:", set);
 })
