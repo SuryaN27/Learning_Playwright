@@ -126,11 +126,11 @@ test("verify that the ckeckbox is checked", async ({ page }) => {
 
     // vii. Select checkbox based on label dynamically
 
-    const label: string = 'Friday';
+    const dayname: string = 'Friday';
     for (const labels in days) {
 
-        if (label.toLowerCase() === label.toLowerCase()) {
-            const checkbox = page.getByLabel(label);
+        if (labels.toLowerCase() === dayname.toLowerCase()) {
+            const checkbox = page.getByLabel(labels);
             await checkbox.check();
             await expect(checkbox).toBeChecked();
         }
