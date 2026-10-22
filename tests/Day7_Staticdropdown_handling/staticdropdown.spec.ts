@@ -16,19 +16,24 @@ import { test, expect, Locator } from "@playwright/test"
 
 test("Verify single select dropdown", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
-    const countryDropdown: Locator = page.locator('#country');
+
+    
+    const countryDropdown: Locator = page.locator('select[id="country"]');
+
+     await expect(countryDropdown).toBeVisible();
+    await expect(countryDropdown).toBeEnabled();
     // Select option from dropdown using different approaches
 
     // 1 Select by visible text
-    await countryDropdown.selectOption('India');
+    await countryDropdown.selectOption('Germany');
 
-    // // 2 Select by value attribute
+    //  2 Select by value attribute
     //  await countryDropdown.selectOption({ value: 'india' });
 
-    // // 3 Select by label
+    //  3 Select by label
     //  await countryDropdown.selectOption({ label: 'India' });
 
-    // // 4 Select by index
+    //  4 Select by index
     // await countryDropdown.selectOption({ index: 3 });
 
     //count 
@@ -62,6 +67,8 @@ test("Multi select dropdown'", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
     console.log("Current URL:", page.url());
     const multicolour: Locator = page.locator('#colors');
+     await expect(multicolour).toBeVisible();
+    await expect(multicolour).toBeEnabled();
     await multicolour.selectOption(['Red', 'Green'])
     //  await multicolour.selectOption(['Red','Green','White'])
     // await multicolour.selectOption([{label:'Red'},{label:'Green'},{label:'White'}])

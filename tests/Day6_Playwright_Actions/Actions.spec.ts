@@ -10,7 +10,7 @@ import { test, expect, Locator } from "@playwright/test";
 
 test("Test input boxes and data to it", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const name: Locator = page.locator('#name');
+    const name: Locator = page.getByPlaceholder('Enter Name');
     await expect(name).toBeVisible();
     await expect(name).toBeEnabled();
     await name.fill("abc");
@@ -33,7 +33,7 @@ test("Test input boxes and data to it", async ({ page }) => {
 
 test('Verify radio buttons', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const male: Locator = page.locator('#male');
+    const male: Locator = page.locator('input[id="male"]');
     await male.isDisabled();
     await male.isEnabled();
     //const bollean=await expect(male).toBeChecked();
@@ -63,9 +63,9 @@ test('Verify radio buttons', async ({ page }) => {
 
 test("verify that the ckeckbox is checked", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const sunday: Locator = page.locator('#sunday');
-    await sunday.isEnabled();
-    await sunday.isDisabled();
+    const sunday: Locator = page.getByLabel('Sunday');
+     await expect(sunday).toBeVisible();
+    await expect(sunday).toBeEnabled();
 
     const bolleanvalue = await sunday.isChecked();
     expect(bolleanvalue).toBe(false);
