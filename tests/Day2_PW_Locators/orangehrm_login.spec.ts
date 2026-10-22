@@ -12,7 +12,9 @@ test("Verify that the user is able to log in to the Orange application successfu
 
     await page.getByRole("button",{name:"Login"}).click();
 
-    const orange_hrm:Locator= page.getByAltText("client brand banner");
+   // const orange_hrm:Locator= page.getByAltText("client brand banner");
+    //[alt="client brand banner"]
+    const orange_hrm:Locator= page.locator('[alt="client brand banner"]');
     await expect(orange_hrm).toBeVisible();
     
     await page.close();

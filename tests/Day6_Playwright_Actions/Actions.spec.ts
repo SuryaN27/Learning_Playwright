@@ -34,8 +34,10 @@ test("Test input boxes and data to it", async ({ page }) => {
 test('Verify radio buttons', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
     const male: Locator = page.locator('input[id="male"]');
-    await male.isDisabled();
-    await male.isEnabled();
+   // await male.isDisabled();
+   // await male.isEnabled();
+   await expect(male).toBeDisabled();
+   await expect(male).toBeEnabled();
     //const bollean=await expect(male).toBeChecked();
     const bolleanstatus: boolean = await male.isChecked();
     expect(bolleanstatus).toBe(false);

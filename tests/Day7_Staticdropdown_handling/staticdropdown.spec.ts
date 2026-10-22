@@ -66,7 +66,7 @@ test("Verify single select dropdown", async ({ page }) => {
 test("Multi select dropdown'", async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/")
     console.log("Current URL:", page.url());
-    const multicolour: Locator = page.locator('#colors');
+    const multicolour: Locator = page.locator('[id="colors"]');
      await expect(multicolour).toBeVisible();
     await expect(multicolour).toBeEnabled();
     await multicolour.selectOption(['Red', 'Green'])
