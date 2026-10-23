@@ -31,7 +31,7 @@ test("Test input boxes and data to it", async ({ page }) => {
 * - State after selection
 */
 
-test.only('Verify radio buttons', async ({ page }) => {
+test('Verify radio buttons', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
    // const male: Locator = page.locator('input[id="male"]');
    const male: Locator = page.locator('[value="male"]');
