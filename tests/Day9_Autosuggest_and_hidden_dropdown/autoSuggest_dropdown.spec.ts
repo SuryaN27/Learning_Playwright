@@ -13,16 +13,16 @@ test("Handling auto suggestion dropdown", async ({ page }) => {
 
     //print all the suggested options in ths console
 
-    //  const options:string[]=await alloptions.allTextContents();
-    //  for(const alloptionstext of options){
-    //     console.log(alloptionstext);
-    //  }
-    const second_element_text: string = await alloptions.nth(1).innerText()
-    console.log(second_element_text)
-    console.log("All options are displayed below")
-    for (let i = 0; i < count; i++) {
-        console.log(await alloptions.nth(i).innerText());
-    }
+     const options:string[]=await alloptions.allTextContents();
+     for(const alloptionstext of options){
+        console.log(alloptionstext);
+     }
+    // const second_element_text: string = await alloptions.nth(1).innerText()
+    // console.log(second_element_text)
+    // console.log("All options are displayed below")
+    // for (let i = 0; i < count; i++) {
+    //     console.log(await alloptions.nth(i).innerText());
+    // }
 
     //click on the smartphone option
     for (let i = 0; i < count; i++) {

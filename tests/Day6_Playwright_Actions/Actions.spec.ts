@@ -31,12 +31,13 @@ test("Test input boxes and data to it", async ({ page }) => {
 * - State after selection
 */
 
-test('Verify radio buttons', async ({ page }) => {
+test.only('Verify radio buttons', async ({ page }) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const male: Locator = page.locator('input[id="male"]');
+   // const male: Locator = page.locator('input[id="male"]');
+   const male: Locator = page.locator('[value="male"]');
    // await male.isDisabled();
    // await male.isEnabled();
-   await expect(male).toBeDisabled();
+   await expect(male).toBeVisible();
    await expect(male).toBeEnabled();
     //const bollean=await expect(male).toBeChecked();
     const bolleanstatus: boolean = await male.isChecked();
