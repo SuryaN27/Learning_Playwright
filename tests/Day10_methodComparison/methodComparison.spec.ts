@@ -70,4 +70,4 @@ test('Verify innerText() Vs textContent() implementation', async ({ page }) => {
     for (let index in booksLocator) {
         console.log("for...in loop:", await booksLocator[index].innerText());
     }
-});
+})
