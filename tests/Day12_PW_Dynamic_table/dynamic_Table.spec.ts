@@ -23,7 +23,7 @@ test("Verift the dynamic element", async ({ page }) => {
 
     let cpuloadtext: string = "";
     for (const eachrowtext of rows) {
-        const cell: string[] = await eachrowtext.locator('td').allInnerTexts();
+        const cell: string[] = await eachrowtext.locator('td').nth(0).allInnerTexts();
         const browser_text: string = cell[0];
         if (browser_text === 'Chrome') {
             const cpuLoad = eachrowtext.locator('td', { hasText: '%' })
